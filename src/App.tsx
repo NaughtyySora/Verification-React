@@ -1,24 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FormEvent } from "react";
+import { Verification } from "./components/Verification/Verification";
 
 function App() {
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const data = new FormData(e.target as HTMLFormElement);
+    console.log("FromData: ", Object.fromEntries(data));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Verification title="Verification Code: " onSubmit={onSubmit} />
     </div>
   );
 }
